@@ -1,0 +1,954 @@
+[
+  {
+    "id": 2005,
+    "name": "Air Force Falcons",
+    "conference": "Mountain West",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2005.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2005.png"
+  },
+  {
+    "id": 2006,
+    "name": "Akron Zips",
+    "conference": "Mid-American",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2006.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2006.png"
+  },
+  {
+    "id": 333,
+    "name": "Alabama Crimson Tide",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/333.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/333.png"
+  },
+  {
+    "id": 2026,
+    "name": "App State Mountaineers",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2026.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2026.png"
+  },
+  {
+    "id": 12,
+    "name": "Arizona Wildcats",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/12.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/12.png"
+  },
+  {
+    "id": 9,
+    "name": "Arizona State Sun Devils",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/9.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/9.png"
+  },
+  {
+    "id": 8,
+    "name": "Arkansas Razorbacks",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/8.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/8.png"
+  },
+  {
+    "id": 2032,
+    "name": "Arkansas State Red Wolves",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2032.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2032.png"
+  },
+  {
+    "id": 349,
+    "name": "Army Black Knights",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/349.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/349.png"
+  },
+  {
+    "id": 2,
+    "name": "Auburn Tigers",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2.png"
+  },
+  {
+    "id": 2050,
+    "name": "Ball State Cardinals",
+    "conference": "Mid-American",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2050.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2050.png"
+  },
+  {
+    "id": 239,
+    "name": "Baylor Bears",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/239.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/239.png"
+  },
+  {
+    "id": 68,
+    "name": "Boise State Broncos",
+    "conference": "Mountain West",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/68.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/68.png"
+  },
+  {
+    "id": 103,
+    "name": "Boston College Eagles",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/103.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/103.png"
+  },
+  {
+    "id": 189,
+    "name": "Bowling Green Falcons",
+    "conference": "Mid-American",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/189.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/189.png"
+  },
+  {
+    "id": 2084,
+    "name": "Buffalo Bulls",
+    "conference": "Mid-American",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2084.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2084.png"
+  },
+  {
+    "id": 252,
+    "name": "BYU Cougars",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/252.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/252.png"
+  },
+  {
+    "id": 25,
+    "name": "California Golden Bears",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/25.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/25.png"
+  },
+  {
+    "id": 2117,
+    "name": "Central Michigan Chippewas",
+    "conference": "Mid-American",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2117.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2117.png"
+  },
+  {
+    "id": 2429,
+    "name": "Charlotte 49ers",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2429.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2429.png"
+  },
+  {
+    "id": 2132,
+    "name": "Cincinnati Bearcats",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2132.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2132.png"
+  },
+  {
+    "id": 228,
+    "name": "Clemson Tigers",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/228.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/228.png"
+  },
+  {
+    "id": 324,
+    "name": "Coastal Carolina Chanticleers",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/324.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/324.png"
+  },
+  {
+    "id": 38,
+    "name": "Colorado Buffaloes",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/38.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/38.png"
+  },
+  {
+    "id": 36,
+    "name": "Colorado State Rams",
+    "conference": "Mountain West",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/36.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/36.png"
+  },
+  {
+    "id": 48,
+    "name": "Delaware Blue Hens",
+    "conference": "Conference USA",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/48.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/48.png"
+  },
+  {
+    "id": 150,
+    "name": "Duke Blue Devils",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/150.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/150.png"
+  },
+  {
+    "id": 151,
+    "name": "East Carolina Pirates",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/151.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/151.png"
+  },
+  {
+    "id": 2199,
+    "name": "Eastern Michigan Eagles",
+    "conference": "Mid-American",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2199.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2199.png"
+  },
+  {
+    "id": 57,
+    "name": "Florida Gators",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/57.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/57.png"
+  },
+  {
+    "id": 2226,
+    "name": "Florida Atlantic Owls",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2226.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2226.png"
+  },
+  {
+    "id": 2229,
+    "name": "Florida International Panthers",
+    "conference": "Conference USA",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2229.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2229.png"
+  },
+  {
+    "id": 52,
+    "name": "Florida State Seminoles",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/52.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/52.png"
+  },
+  {
+    "id": 278,
+    "name": "Fresno State Bulldogs",
+    "conference": "Mountain West",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/278.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/278.png"
+  },
+  {
+    "id": 61,
+    "name": "Georgia Bulldogs",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/61.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/61.png"
+  },
+  {
+    "id": 290,
+    "name": "Georgia Southern Eagles",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/290.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/290.png"
+  },
+  {
+    "id": 2247,
+    "name": "Georgia State Panthers",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2247.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2247.png"
+  },
+  {
+    "id": 59,
+    "name": "Georgia Tech Yellow Jackets",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/59.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/59.png"
+  },
+  {
+    "id": 62,
+    "name": "Hawai'i Rainbow Warriors",
+    "conference": "Mountain West",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/62.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/62.png"
+  },
+  {
+    "id": 248,
+    "name": "Houston Cougars",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/248.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/248.png"
+  },
+  {
+    "id": 356,
+    "name": "Illinois Fighting Illini",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/356.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/356.png"
+  },
+  {
+    "id": 84,
+    "name": "Indiana Hoosiers",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/84.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/84.png"
+  },
+  {
+    "id": 2294,
+    "name": "Iowa Hawkeyes",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2294.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2294.png"
+  },
+  {
+    "id": 66,
+    "name": "Iowa State Cyclones",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/66.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/66.png"
+  },
+  {
+    "id": 55,
+    "name": "Jacksonville State Gamecocks",
+    "conference": "Conference USA",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/55.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/55.png"
+  },
+  {
+    "id": 256,
+    "name": "James Madison Dukes",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/256.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/256.png"
+  },
+  {
+    "id": 2305,
+    "name": "Kansas Jayhawks",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2305.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2305.png"
+  },
+  {
+    "id": 2306,
+    "name": "Kansas State Wildcats",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2306.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2306.png"
+  },
+  {
+    "id": 338,
+    "name": "Kennesaw State Owls",
+    "conference": "Conference USA",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/338.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/338.png"
+  },
+  {
+    "id": 2309,
+    "name": "Kent State Golden Flashes",
+    "conference": "Mid-American",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2309.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2309.png"
+  },
+  {
+    "id": 96,
+    "name": "Kentucky Wildcats",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/96.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/96.png"
+  },
+  {
+    "id": 2335,
+    "name": "Liberty Flames",
+    "conference": "Conference USA",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2335.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2335.png"
+  },
+  {
+    "id": 309,
+    "name": "Louisiana Ragin' Cajuns",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/309.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/309.png"
+  },
+  {
+    "id": 2348,
+    "name": "Louisiana Tech Bulldogs",
+    "conference": "Conference USA",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2348.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2348.png"
+  },
+  {
+    "id": 97,
+    "name": "Louisville Cardinals",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/97.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/97.png"
+  },
+  {
+    "id": 99,
+    "name": "LSU Tigers",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/99.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/99.png"
+  },
+  {
+    "id": 276,
+    "name": "Marshall Thundering Herd",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/276.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/276.png"
+  },
+  {
+    "id": 120,
+    "name": "Maryland Terrapins",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/120.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/120.png"
+  },
+  {
+    "id": 113,
+    "name": "Massachusetts Minutemen",
+    "conference": "Mid-American",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/113.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/113.png"
+  },
+  {
+    "id": 235,
+    "name": "Memphis Tigers",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/235.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/235.png"
+  },
+  {
+    "id": 2390,
+    "name": "Miami Hurricanes",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2390.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2390.png"
+  },
+  {
+    "id": 193,
+    "name": "Miami (OH) RedHawks",
+    "conference": "Mid-American",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/193.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/193.png"
+  },
+  {
+    "id": 130,
+    "name": "Michigan Wolverines",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/130.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/130.png"
+  },
+  {
+    "id": 127,
+    "name": "Michigan State Spartans",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/127.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/127.png"
+  },
+  {
+    "id": 2393,
+    "name": "Middle Tennessee Blue Raiders",
+    "conference": "Conference USA",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2393.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2393.png"
+  },
+  {
+    "id": 135,
+    "name": "Minnesota Golden Gophers",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/135.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/135.png"
+  },
+  {
+    "id": 344,
+    "name": "Mississippi State Bulldogs",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/344.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/344.png"
+  },
+  {
+    "id": 142,
+    "name": "Missouri Tigers",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/142.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/142.png"
+  },
+  {
+    "id": 2623,
+    "name": "Missouri State Bears",
+    "conference": "Conference USA",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2623.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2623.png"
+  },
+  {
+    "id": 2426,
+    "name": "Navy Midshipmen",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2426.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2426.png"
+  },
+  {
+    "id": 152,
+    "name": "NC State Wolfpack",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/152.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/152.png"
+  },
+  {
+    "id": 158,
+    "name": "Nebraska Cornhuskers",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/158.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/158.png"
+  },
+  {
+    "id": 2440,
+    "name": "Nevada Wolf Pack",
+    "conference": "Mountain West",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2440.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2440.png"
+  },
+  {
+    "id": 167,
+    "name": "New Mexico Lobos",
+    "conference": "Mountain West",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/167.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/167.png"
+  },
+  {
+    "id": 166,
+    "name": "New Mexico State Aggies",
+    "conference": "Conference USA",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/166.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/166.png"
+  },
+  {
+    "id": 153,
+    "name": "North Carolina Tar Heels",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/153.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/153.png"
+  },
+  {
+    "id": 2459,
+    "name": "Northern Illinois Huskies",
+    "conference": "Mid-American",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2459.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2459.png"
+  },
+  {
+    "id": 249,
+    "name": "North Texas Mean Green",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/249.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/249.png"
+  },
+  {
+    "id": 77,
+    "name": "Northwestern Wildcats",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/77.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/77.png"
+  },
+  {
+    "id": 87,
+    "name": "Notre Dame Fighting Irish",
+    "conference": "FBS Independents",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/87.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/87.png"
+  },
+  {
+    "id": 195,
+    "name": "Ohio Bobcats",
+    "conference": "Mid-American",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/195.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/195.png"
+  },
+  {
+    "id": 194,
+    "name": "Ohio State Buckeyes",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/194.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/194.png"
+  },
+  {
+    "id": 201,
+    "name": "Oklahoma Sooners",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/201.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/201.png"
+  },
+  {
+    "id": 197,
+    "name": "Oklahoma State Cowboys",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/197.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/197.png"
+  },
+  {
+    "id": 295,
+    "name": "Old Dominion Monarchs",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/295.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/295.png"
+  },
+  {
+    "id": 145,
+    "name": "Ole Miss Rebels",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/145.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/145.png"
+  },
+  {
+    "id": 2483,
+    "name": "Oregon Ducks",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2483.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2483.png"
+  },
+  {
+    "id": 204,
+    "name": "Oregon State Beavers",
+    "conference": "Pac-12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/204.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/204.png"
+  },
+  {
+    "id": 213,
+    "name": "Penn State Nittany Lions",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/213.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/213.png"
+  },
+  {
+    "id": 221,
+    "name": "Pittsburgh Panthers",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/221.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/221.png"
+  },
+  {
+    "id": 2509,
+    "name": "Purdue Boilermakers",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2509.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2509.png"
+  },
+  {
+    "id": 242,
+    "name": "Rice Owls",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/242.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/242.png"
+  },
+  {
+    "id": 164,
+    "name": "Rutgers Scarlet Knights",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/164.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/164.png"
+  },
+  {
+    "id": 2534,
+    "name": "Sam Houston Bearkats",
+    "conference": "Conference USA",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2534.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2534.png"
+  },
+  {
+    "id": 21,
+    "name": "San Diego State Aztecs",
+    "conference": "Mountain West",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/21.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/21.png"
+  },
+  {
+    "id": 23,
+    "name": "San Jos\u00e9 State Spartans",
+    "conference": "Mountain West",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/23.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/23.png"
+  },
+  {
+    "id": 2567,
+    "name": "SMU Mustangs",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2567.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2567.png"
+  },
+  {
+    "id": 6,
+    "name": "South Alabama Jaguars",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/6.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/6.png"
+  },
+  {
+    "id": 2579,
+    "name": "South Carolina Gamecocks",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2579.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2579.png"
+  },
+  {
+    "id": 2572,
+    "name": "Southern Miss Golden Eagles",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2572.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2572.png"
+  },
+  {
+    "id": 58,
+    "name": "South Florida Bulls",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/58.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/58.png"
+  },
+  {
+    "id": 24,
+    "name": "Stanford Cardinal",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/24.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/24.png"
+  },
+  {
+    "id": 183,
+    "name": "Syracuse Orange",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/183.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/183.png"
+  },
+  {
+    "id": 2628,
+    "name": "TCU Horned Frogs",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2628.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2628.png"
+  },
+  {
+    "id": 218,
+    "name": "Temple Owls",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/218.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/218.png"
+  },
+  {
+    "id": 2633,
+    "name": "Tennessee Volunteers",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2633.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2633.png"
+  },
+  {
+    "id": 251,
+    "name": "Texas Longhorns",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/251.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/251.png"
+  },
+  {
+    "id": 245,
+    "name": "Texas A&M Aggies",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/245.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/245.png"
+  },
+  {
+    "id": 326,
+    "name": "Texas State Bobcats",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/326.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/326.png"
+  },
+  {
+    "id": 2641,
+    "name": "Texas Tech Red Raiders",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2641.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2641.png"
+  },
+  {
+    "id": 2649,
+    "name": "Toledo Rockets",
+    "conference": "Mid-American",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2649.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2649.png"
+  },
+  {
+    "id": 2653,
+    "name": "Troy Trojans",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2653.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2653.png"
+  },
+  {
+    "id": 2655,
+    "name": "Tulane Green Wave",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2655.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2655.png"
+  },
+  {
+    "id": 202,
+    "name": "Tulsa Golden Hurricane",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/202.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/202.png"
+  },
+  {
+    "id": 5,
+    "name": "UAB Blazers",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/5.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/5.png"
+  },
+  {
+    "id": 2116,
+    "name": "UCF Knights",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2116.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2116.png"
+  },
+  {
+    "id": 26,
+    "name": "UCLA Bruins",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/26.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/26.png"
+  },
+  {
+    "id": 41,
+    "name": "UConn Huskies",
+    "conference": "FBS Independents",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/41.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/41.png"
+  },
+  {
+    "id": 2433,
+    "name": "UL Monroe Warhawks",
+    "conference": "Sun Belt",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2433.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2433.png"
+  },
+  {
+    "id": 2439,
+    "name": "UNLV Rebels",
+    "conference": "Mountain West",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2439.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2439.png"
+  },
+  {
+    "id": 30,
+    "name": "USC Trojans",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/30.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/30.png"
+  },
+  {
+    "id": 254,
+    "name": "Utah Utes",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/254.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/254.png"
+  },
+  {
+    "id": 328,
+    "name": "Utah State Aggies",
+    "conference": "Mountain West",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/328.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/328.png"
+  },
+  {
+    "id": 2638,
+    "name": "UTEP Miners",
+    "conference": "Conference USA",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2638.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2638.png"
+  },
+  {
+    "id": 2636,
+    "name": "UTSA Roadrunners",
+    "conference": "American Athletic",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2636.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2636.png"
+  },
+  {
+    "id": 238,
+    "name": "Vanderbilt Commodores",
+    "conference": "SEC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/238.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/238.png"
+  },
+  {
+    "id": 258,
+    "name": "Virginia Cavaliers",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/258.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/258.png"
+  },
+  {
+    "id": 259,
+    "name": "Virginia Tech Hokies",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/259.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/259.png"
+  },
+  {
+    "id": 154,
+    "name": "Wake Forest Demon Deacons",
+    "conference": "ACC",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/154.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/154.png"
+  },
+  {
+    "id": 264,
+    "name": "Washington Huskies",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/264.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/264.png"
+  },
+  {
+    "id": 265,
+    "name": "Washington State Cougars",
+    "conference": "Pac-12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/265.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/265.png"
+  },
+  {
+    "id": 98,
+    "name": "Western Kentucky Hilltoppers",
+    "conference": "Conference USA",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/98.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/98.png"
+  },
+  {
+    "id": 2711,
+    "name": "Western Michigan Broncos",
+    "conference": "Mid-American",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2711.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2711.png"
+  },
+  {
+    "id": 277,
+    "name": "West Virginia Mountaineers",
+    "conference": "Big 12",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/277.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/277.png"
+  },
+  {
+    "id": 275,
+    "name": "Wisconsin Badgers",
+    "conference": "Big Ten",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/275.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/275.png"
+  },
+  {
+    "id": 2751,
+    "name": "Wyoming Cowboys",
+    "conference": "Mountain West",
+    "logoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500/2751.png",
+    "altLogoURL": "https://a.espncdn.com/i/teamlogos/ncaa/500-dark/2751.png"
+  }
+]
