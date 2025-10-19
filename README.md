@@ -1,6 +1,9 @@
 # CFB ATS API
 Service to expose ATS model predictions for college football games
 
+## Testing
+Run the app with `uvicorn app.main:app --reload`
+
 ## Status
 Adding in an endpoint to retrieve game data asynchronously. Stubbing other data to pull from CFBD. These endpoints will be used to pull data to build the model's dataset
 
