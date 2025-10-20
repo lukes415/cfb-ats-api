@@ -3,3 +3,4 @@ uvicorn[standard]
 pydantic
 cfbd
 python-dotenv
+pydantic_settings
