@@ -1,17 +1,12 @@
 from fastapi import FastAPI
-from .schemas import Team, GamePrediction, GameScore, Coach, Venue, Line, Weather
+from schemas import Team, GamePrediction, GameScore, Coach, Venue, Line, Weather
+from routes import games
 import json
 from pathlib import Path
 from datetime import datetime
-import httpx
-import asyncio
-from .config import settings
-
-HEADERS = {
-    "Authorization": f"Bearer {settings.CFBD_API_KEY}"
-}
 
 app = FastAPI(title="CFB ATS API", version="0.0.1")
+app.include_router(games.router, prefix="/v1")
 
 TEAMS_FILE = Path("./reference_data") / "fbs_teams.json"
 
@@ -39,34 +34,6 @@ def teams():
         data = json.load(f)
     return [Team(**t) for t in data]
 
-async def fetch_games_for_year(year: int):
-    async with httpx.AsyncClient() as client:
-        try:
-            response = await client.get(f"{settings.CFBD_URL}/games?year={year}", headers=HEADERS)
-            return response.json()
-        except httpx.HTTPStatusError as e:
-            # Flesh this out
-            print("HTTP status error")
-            print(e)
-        except Exception as e:
-            #Flesh this out
-            print("general exception")
-            print(e)
-
-@app.get("/games")
-async def games(start_year: int, end_year: int, home_fbs_only: bool | None = False):
-    if end_year < start_year:
-        return []
-    years = range(start_year, end_year + 1)
-    tasks = [fetch_games_for_year(year) for year in years]
-
-    results = await asyncio.gather(*tasks)
-
-    all_games = []
-    for year_data in results:
-        all_games.extend(year_data)
-    # Add in game data massaging logic to map to Game class
-    return all_games
 
 @app.get("/coaches", response_model=list[Coach])
 def coaches(start_year: int, end_year: int | None = None):
