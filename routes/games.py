@@ -1,12 +1,13 @@
 from fastapi import APIRouter
 # from .deps import get_model_bundle  # loads model + featurizer
 import asyncio
-from services import cfbd_service
+from services.cfbd_service import cfbd_service
 import json
 router = APIRouter(prefix="/games", tags=["games"])
 
 @router.get("")
 async def games(start_year: int, end_year: int, home_fbs_only: bool | None = False):
+    print("hi")
     if end_year < start_year:
         return []
     years = range(start_year, end_year + 1)

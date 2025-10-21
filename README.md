@@ -5,6 +5,31 @@ Service to expose ATS model predictions for college football games
 Run the app with
 `uvicorn main:app --reload`
 
+## Next Steps
+ - [x] Create mock endpoints
+ - [ ] Create a natural language endpoint powered by OpenAI to answer questions about the dataset.
+ - [ ] Fully define remaining endpoints
+ - [ ] Build and expose specs
+
+ ## Chatbot Progress
+ **Example**
+ ```bash
+ POST /v1/chat
+ {
+    "question": "How many games are in the 2024 dataset?"
+    "year": 2024
+ }
+```
+
+**Response**
+```json
+{
+    "answer": "The 2024 dataset contains 3801 games.",
+    "tokens_used": 9837
+}
+```
+![Chat API Example](screenshots/chat_example.png)
+
 ## Status
 Adding in an endpoint to retrieve game data asynchronously. Stubbing other data to pull from CFBD. These endpoints will be used to pull data to build the model's dataset
 
@@ -13,11 +38,6 @@ Adding in an endpoint to retrieve game data asynchronously. Stubbing other data 
 - [x] Hooked up /games to pull from CFBD
 - [x] Added live and health checks
 - [x] Created endpoint stubs for teams, coaches, venues, lines, weather, score, and predict
-
-## Next Steps
- - [x] Create mock endpoints
- - [ ] Create an endpoint that pulls from a real model
- - [ ] Build and expose specs
 
 ## Future Goals
 - [ ] Build and expose an endpoint to get weekly picks from the model and data from CFBD
