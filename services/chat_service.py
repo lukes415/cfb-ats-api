@@ -3,10 +3,9 @@ from config import settings
 import json
 
 client = OpenAI(api_key=settings.openai_api_key)
+sample_size = 15
 
 class ChatService:
-    def test(self):
-        return {"answer": "hi"}
     
     async def answer_question(self, question: str, games_data: list = None):
         """
@@ -15,7 +14,11 @@ class ChatService:
         messages = [
             {
                 "role": "system", 
-                "content": "You are a highly skilled data analyst with deep college football domain expertise. Answer questions about games, teams, and statistics based on the provided data."
+                "content": f"You are a highly skilled data analyst with deep college football domain expertise. The user has asked about data from college football games. There are {len(games_data) if games_data else 0} games in the dataset provided."
+            },
+            {
+                "role": "system",
+                "content": f"Here is a sample of {sample_size} games to understand the data structure: {json.dumps(games_data[:sample_size], indent=2) if games_data else []}"
             },
             {"role": "user", "content": question}
         ]
@@ -24,13 +27,13 @@ class ChatService:
         if games_data:
             messages.insert(1, {
                 "role": "system",
-                "content": f"Here is the relevant game data: {json.dumps(games_data[:15])}"  # Limit to avoid token limits
+                "content": f"Here is the relevant game data: {json.dumps(games_data[:sample_size])}"  # Limit to avoid token limits
             })
         
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages,
-            temperature=0.7,
+            temperature=0.3,
             max_tokens=500
         )
         

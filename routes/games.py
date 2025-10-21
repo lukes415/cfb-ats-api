@@ -7,6 +7,7 @@ router = APIRouter(prefix="/games", tags=["games"])
 
 @router.get("")
 async def games(start_year: int, end_year: int, home_fbs_only: bool | None = False):
+    print("hi")
     if end_year < start_year:
         return []
     years = range(start_year, end_year + 1)

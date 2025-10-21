@@ -23,10 +23,10 @@ async def chat(request: ChatRequest):
         question=request.question,
         games_data=games
     )
-    
-    return {
-        "question": request.question,
-        "answer": result["answer"],
-        "year": request.year,
-        "tokens_used": result["tokens_used"]
-    }
+    return result
+    # return {
+    #     "question": request.question,
+    #     "answer": result["answer"],
+    #     "year": request.year,
+    #     "tokens_used": result["tokens_used"]
+    # }
