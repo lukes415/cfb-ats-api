@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 # from .deps import get_model_bundle  # loads model + featurizer
 import asyncio
-from services import cfbd_service
+from services.cfbd_service import cfbd_service
 import json
 router = APIRouter(prefix="/games", tags=["games"])
 
