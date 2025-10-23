@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from schemas import Team, GamePrediction, GameScore, Coach, Venue, Line, Weather
-from routes import games, chat, coaches, teams
+from routes import games, chat, coaches, teams, venues
 from config import START_TIME
 
 app = FastAPI(title="CFB ATS API", version="0.0.1")
@@ -9,6 +9,7 @@ app.include_router(games.router, prefix="/v1")
 app.include_router(chat.router, prefix="/v1")
 app.include_router(coaches.router, prefix="/v1")
 app.include_router(teams.router, prefix="/v1")
+app.include_router(venues.router, prefix="/v1")
 
 
 SAMPLE_SCORE = GameScore(game_id=1, home_team_id=1, home_team_name="Georgia", away_team_id=2, away_team_name="Alabama", quarter=4, home_score=14, away_score=24, clock="15:00", spread=-4)

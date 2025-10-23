@@ -3,7 +3,7 @@ from fastapi import HTTPException
 from config import settings
 from pathlib import Path
 import json
-from config import TEAMS_FILE
+from config import TEAMS_FILE, VENUES_FILE
 import requests
 from schemas import Team
 
@@ -133,6 +133,22 @@ class CFBDService():
                 status_code=500,
                 detail=f"Error fetching teams for year {year}: {str(e)}"
             )
+
+    def fetch_venues(self, year: int):
+        VENUES_FILE.parent.mkdir(parents=True, exist_ok=True)
+        response = requests.get(
+            f"{CFBD_BASE_URL}/venues",
+            params={"year": year},
+            headers = HEADERS,
+            timeout=30
+        )
+        response.raise_for_status()
+        data = response.json()
+        with open(VENUES_FILE, "w") as f:
+            json.dump(data, f, indent=2)
+        
+        return [venue for venue in data]
+    
     def fetch_teams(self, year: int):
         TEAMS_FILE.parent.mkdir(parents=True, exist_ok=True)
         response = requests.get(
@@ -146,7 +162,7 @@ class CFBDService():
         with open(TEAMS_FILE, "w") as f:
             json.dump(data, f, indent=2)
         
-        return [t for t in data]
+        return [team for team in data]
 
 
 cfbd_service = CFBDService()
