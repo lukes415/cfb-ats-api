@@ -17,5 +17,5 @@ async def coaches(start_year: int, end_year: int | None = None):
     results = await asyncio.gather(*tasks)
     for year_data in results:
         all_coaches.extend(year_data)
-    # Add in game data massaging logic to map to Game class
+    # Add in game data massaging logic to map to Coach class
     return all_coaches

@@ -17,5 +17,5 @@ async def weather(start_year: int, end_year: int | None = None):
     all_weather = []
     for year_data in results:
         all_weather.extend(year_data)
-    # Add in game data massaging logic to map to Line class
+    # Add in game data massaging logic to map to Weather class
     return all_weather
