@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from schemas import Team, GamePrediction, GameScore, Coach, Venue, Line, Weather
-from routes import games, chat
+from routes import games, chat, coaches
 import json
 from pathlib import Path
 from datetime import datetime
@@ -9,6 +9,7 @@ app = FastAPI(title="CFB ATS API", version="0.0.1")
 
 app.include_router(games.router, prefix="/v1")
 app.include_router(chat.router, prefix="/v1")
+app.include_router(coaches.router, prefix="/v1")
 
 TEAMS_FILE = Path("./reference_data") / "fbs_teams.json"
 

@@ -96,5 +96,38 @@ class CFBDService():
                 status_code=500,
                 detail=f"Error fetching teams for year {year}: {str(e)}"
             )
+    async def fetch_coaches_for_year(self, year: int):
+        """Fetch teams for a year with caching"""
+        cache_key = f"coaches_{year}"
+        
+        if cache_key in self._cache:
+            print(f"Cache hit for {cache_key}")
+            return self._cache[cache_key]
+        
+        print(f"Cache miss for {cache_key}, fetching from API...")
+        try:
+            async with httpx.AsyncClient() as client:
+                response = await client.get(
+                    f"{settings.cfbd_base_url}/coaches",
+                    params={"year": year},
+                    headers={"Authorization": f"Bearer {settings.cfbd_api_key}"},
+                    timeout=30
+                )
+                response.raise_for_status()
+                data = response.json()
+                
+                # Store in cache and save to file
+                self._cache[cache_key] = data
+                self._save_cache()
+                return data
+        except httpx.HTTPStatusError as e:
+                # To improve
+                print("HTTP status error")
+                print(e)
+        except Exception as e:
+            raise HTTPException(
+                status_code=500,
+                detail=f"Error fetching teams for year {year}: {str(e)}"
+            )
 
 cfbd_service = CFBDService()
