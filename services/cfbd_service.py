@@ -3,7 +3,11 @@ from fastapi import HTTPException
 from config import settings
 from pathlib import Path
 import json
+from config import TEAMS_FILE
+import requests
+from schemas import Team
 
+CFBD_BASE_URL = settings.cfbd_base_url
 HEADERS = {
     "Authorization": f"Bearer {settings.cfbd_api_key}"
 }
@@ -77,7 +81,7 @@ class CFBDService():
                 response = await client.get(
                     f"{settings.cfbd_base_url}/teams",
                     params={"year": year},
-                    headers={"Authorization": f"Bearer {settings.cfbd_api_key}"},
+                    headers=HEADERS,
                     timeout=30
                 )
                 response.raise_for_status()
@@ -129,5 +133,20 @@ class CFBDService():
                 status_code=500,
                 detail=f"Error fetching teams for year {year}: {str(e)}"
             )
+    def fetch_teams(self, year: int):
+        TEAMS_FILE.parent.mkdir(parents=True, exist_ok=True)
+        response = requests.get(
+            f"{CFBD_BASE_URL}/teams",
+            params={"year": year},
+            headers = HEADERS,
+            timeout=30
+        )
+        response.raise_for_status()
+        data = response.json()
+        with open(TEAMS_FILE, "w") as f:
+            json.dump(data, f, indent=2)
+        
+        return [t for t in data]
+
 
 cfbd_service = CFBDService()
