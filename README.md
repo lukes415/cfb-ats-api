@@ -16,7 +16,7 @@ Run the app with
  ```bash
  POST /v1/chat
  {
-    "question": "How many games are in the 2024 dataset?"
+    "question": "How many games did the seminoles play in 2024"
     "year": 2024
  }
 ```
@@ -24,11 +24,10 @@ Run the app with
 **Response**
 ```json
 {
-    "answer": "The 2024 dataset contains 3801 games.",
-    "tokens_used": 9837
+    "answer": "The Florida State Seminoles played a total of 12 games in the 2024 season."
 }
 ```
-![Chat API Example](screenshots/chat_example.png)
+![Chat API Example](screenshots/team_nickname.png)
 
 ## Status
 Adding in an endpoint to retrieve game data asynchronously. Stubbing other data to pull from CFBD. These endpoints will be used to pull data to build the model's dataset
