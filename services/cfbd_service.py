@@ -164,5 +164,36 @@ class CFBDService():
         
         return [team for team in data]
 
+    async def fetch_lines_for_year(self, year: int):
+        # Utilize the cache
+        cache_key = f"lines_{year}"
+        if cache_key in self._cache:
+            print(f"Cache hit for {year}")
+            return self._cache[cache_key]
+        
+        print("Cache miss, calling API")
+        async with httpx.AsyncClient() as client:
+            try:
+                response = await client.get(
+                    f"{settings.cfbd_base_url}/lines",
+                    params={"year": year},
+                    headers=HEADERS
+                    #add timeout
+                )
+                response.raise_for_status()
+                data = response.json()
+                self._cache[cache_key] = data
+                self._save_cache()
+                return data
+            except httpx.HTTPStatusError as e:
+                # To improve
+                print("HTTP status error")
+                print(e)
+            except Exception as e:
+                raise HTTPException(
+                    status_code=500,
+                    detail=f"Error fetching teams for year {year}: {str(e)}"
+                )
+
 
 cfbd_service = CFBDService()
