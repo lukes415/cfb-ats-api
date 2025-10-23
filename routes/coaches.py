@@ -7,10 +7,10 @@ router = APIRouter(prefix="/coaches", tags=["coaches"])
 
 @router.get("")
 async def coaches(start_year: int, end_year: int | None = None):
-    if end_year and end_year < start_year:
+    end_year_to_use = end_year if end_year else start_year
+    if end_year_to_use < start_year:
         return []
-    end_year_bound = end_year + 1 if end_year else start_year + 1
-    years = range(start_year, end_year_bound)
+    years = range(start_year, end_year_to_use + 1)
     tasks = [cfbd_service.fetch_coaches_for_year(year) for year in years]
 
     all_coaches = []
