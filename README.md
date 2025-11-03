@@ -6,17 +6,16 @@ Run the app with
 `uvicorn main:app --reload`
 
 ## Next Steps
- - [x] Create mock endpoints
- - [ ] Create a natural language endpoint powered by OpenAI to answer questions about the dataset.
- - [ ] Fully define remaining endpoints
- - [ ] Build and expose specs
+- [ ] Add additional functions to the chat endpoint
 
  ## Chatbot Progress
+ I updated the chatbot to use function calling to support additional types of queries in the future. I also updated the team matching logic to properly identify "Florida State" instead of "Florida"
+
  **Example**
  ```bash
  POST /v1/chat
  {
-    "question": "How many games did the seminoles play in 2024"
+    "question": "How many games did the Florida State play in 2024?"
     "year": 2024
  }
 ```
@@ -24,28 +23,31 @@ Run the app with
 **Response**
 ```json
 {
-    "answer": "The Florida State Seminoles played a total of 12 games in the 2024 season."
+    "answer": "Florida State played 12 games in the 2024 season.",
+    "tokens_used": 3984,
+    "function_called": "get_team_games",
+    "function_args": {
+        "team_name": "Florida State"
+    },
+    "matched_team_from_dataset": "Florida State"
 }
 ```
-![Chat API Example](screenshots/team_nickname.png)
+![Chat API Example](screenshots/games_function_call.png)
 
-## Status
-Adding in an endpoint to retrieve game data asynchronously. Stubbing other data to pull from CFBD. These endpoints will be used to pull data to build the model's dataset
-
-## Completed
-- [x] Scaffolding
-- [x] Hooked up /games to pull from CFBD
-- [x] Added live and health checks
-- [x] Created endpoint stubs for teams, coaches, venues, lines, weather, score, and predict
+## Completed 
+ - [x] Add live connectivity to games, coaches, lines, teams, venues, and weather endpoints
+ - [x] Build a local caching mechanism to reduce calls to CFBD
+  -[x] Introduce a natural language endpoint powered by OpenAI to answer questions about the dataset
+- [x] Use Pydantic for configuration management and data validations
 
 ## Future Goals
-- [ ] Build and expose an endpoint to get weekly picks from the model and data from CFBD
-- [ ] Allow a user to retrieve games, teams, weather, lines, coaches, etc.
+- [ ] Integrate the ATS picks ML model
 - [ ] Allow a user to retrieve picks for specific teams of interests
+- [ ] Build out logging and expose specs
 - [ ] Stretch: Allow support for retrieving realtime game information to support push notifications
 
 ## Tech
-- FastAPI and Pydantic (pending)
+- FastAPI and Pydantic
 - skl or xgboost model loader
 - Docker / similar
 - Github Actions CI/CD
