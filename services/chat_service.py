@@ -23,31 +23,26 @@ class ChatService:
 
     def _normalize_team_name(self, query_text: str) -> str:
         """
-        Find official team name from query text using school name, team nickname, or alternate names.
-        Returns official "school" name or None if not found.
-        Note that this logic is rudimentary for now. Schools with a space in their name will likely not be found,
-        e.g. Florida State will return Florida because of short circuiting.
+        Updated logic to find the team with the longest name that matches the query to resolve Florida vs. Florida State issue
         """
         query_lower = query_text.lower()
+        matches = []
         
         for team in self._teams:
-            # Check school name
-            if team.get("school", "").lower() in query_lower:
-                return team["school"]
-            
-            # Check mascot
-            if team.get("mascot", "").lower() in query_lower:
-                return team["school"]
-            
-            # Check abbreviation
-            if team.get("abbreviation", "").lower() in query_lower:
-                return team["school"]
-            
-            # Check alternate names
-            alt_names = team.get("alternateNames")
-            for alt in alt_names:
-                if alt and alt.lower() in query_lower:
-                    return team["school"]
+            school = team.get("school", "")
+            abbrev = team.get("abbreviation", "")
+            alt_names = team.get("alternativeNames", "")
+            all_names = [school] + [abbrev] + [a for a in alt_names if a]
+
+            for name in all_names:
+                if name and name.lower() in query_lower:
+                    matches.append((len(name), team["school"], name))
+        
+        if matches:
+            # The values will be sorted by the length of the name
+            matches.sort(reverse = True)
+            # Return the first (longest) school name in the matches set
+            return matches[0][1]
         
         return None
 
@@ -62,31 +57,6 @@ class ChatService:
             g for g in games_data 
             if g.get("homeTeam") == team or g.get("awayTeam") == team
         ]
-
-    def _prepare_game_data(self, question: str, games_data: list) -> dict:
-        """
-        Prepare and filter game data based on the question.
-        Returns: {
-            "data": filtered or sampled games,
-            "team_filter": team name or None,
-            "context_note": description of what data is being used
-        }
-        """
-        team = self._detect_team_in_question(question, games_data)
-        
-        if team:
-            print("hello")
-            relevant_data = self._filter_games_by_team(games_data, team)
-            context_note = f"Filtered to {len(relevant_data)} games involving {team}"
-        else:
-            relevant_data = games_data[:20]  # Sample for general questions
-            context_note = f"Using sample of {len(relevant_data)} games from {len(games_data)} total"
-        
-        return {
-            "data": relevant_data,
-            "team_filter": team,
-            "context_note": context_note
-        }
     def _build_system_message(self, prepared_data: dict, games_data: list) -> str:
         """Build the system message for the LLM"""
         available_fields = list(prepared_data["data"][0].keys()) if prepared_data["data"] else []
@@ -112,33 +82,109 @@ class ChatService:
                 "answer": "There is no game data available to analyze.",
                 "tokens_used": 0
             }
-        prepared = self._prepare_game_data(question, games_data)
-        messages = [
+        # Team filter function, will be extended with additional functions
+        tools = [
             {
-                "role": "system", 
-                "content": self._build_system_message(prepared, games_data)
-            },
-            {
-                "role": "system", 
-                "content": f"Game data:\n{json.dumps(prepared['data'], indent=2)}"
-            },
-            {
-                "role": "user",
-                "content": question
+                "type": "function",
+                "function": {
+                    "name": "get_team_games",
+                    "description": "Get all games for a specific college football team. Use this when the user asks about a specific team's games, performance, or statistics.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "team_name": {
+                                "type": "string",
+                                "description": "The name of the college football team (e.g., 'Alabama', 'Florida State', 'Ohio State'). Can be full name, abbreviation, or nickname."
+                            }
+                        },
+                        "required": ["team_name"]
+                    }
+                }
             }
         ]
+        messages = [
+            {
+                "role": "system",
+                "content": f"You are a college football analytics assistant with access to {len(games_data)} games. When asked about a specific team, use the get_team_games function to retrieve relevant data."
+            },
+            {"role": "user", "content": question}
+        ]
+        
+        # First API call - LLM decides if it needs to call function
         response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages,
-            temperature=0.2,
-            max_tokens=400
+            tools=tools,
+            tool_choice="auto"
         )
-        
-        return {
-            "answer": response.choices[0].message.content,
-            # "tokens_used": response.usage.total_tokens, 
-            # "games_analyzed": len(prepared["data"]),
-            # "team_filter": prepared["team_filter"]
-        }
 
+        response_message = response.choices[0].message
+        tool_calls = response_message.tool_calls
+        
+        # If LLM wants to call the function
+        if tool_calls:
+            # Add LLM's response to messages
+            messages.append(response_message)
+            
+            # Process each tool call (usually just one)
+            for tool_call in tool_calls:
+                print("tool call: ", tool_call)
+                function_name = tool_call.function.name
+                function_args = json.loads(tool_call.function.arguments)
+                
+                print(f"LLM calling function: {function_name} with args: {function_args}")
+                
+                if function_name == "get_team_games":
+                    # Use existing team name normalization
+                    team_name = function_args.get("team_name", "")
+                    normalized_team = self._normalize_team_name(team_name)
+
+                    # print("normalized team: ", normalized_team)
+                    
+                    if normalized_team:
+                        # Filter games for this team
+                        filtered_games = [
+                            g for g in games_data 
+                            if g.get('homeTeam') == normalized_team or g.get('awayTeam') == normalized_team
+                        ]
+                        function_result = {
+                            "team": normalized_team,
+                            "games_found": len(filtered_games),
+                            "games": filtered_games
+                        }
+                    else:
+                        function_result = {
+                            "error": f"Could not find team: {team_name}",
+                            "games_found": 0,
+                            "games": []
+                        }
+                else:
+                    function_result = {"error": "Unknown function"}
+                
+                # Add function result to messages
+                messages.append({
+                    "role": "tool",
+                    "tool_call_id": tool_call.id,
+                    "content": json.dumps(function_result)
+                })
+            
+            # Second API call - LLM uses the function results to answer
+            second_response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=messages
+            )
+            # Added the matched_team_from_dataset to validate that the requested team was properly identified by the internal logic before passing to the LLM
+            return {
+                "answer": second_response.choices[0].message.content,
+                "tokens_used": response.usage.total_tokens + second_response.usage.total_tokens,
+                "function_called": function_name,
+                "function_args": function_args,
+                "matched_team_from_dataset": normalized_team
+            }
+        
+        # No function call needed - LLM answered directly
+        return {
+            "answer": response_message.content,
+            "tokens_used": response.usage.total_tokens
+        }
 chat_service = ChatService()
