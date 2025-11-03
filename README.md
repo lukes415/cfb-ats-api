@@ -48,6 +48,11 @@ Run the app with
 
 ## Tech
 - FastAPI and Pydantic
+- OpenAI GPT-4 for natural language interface
+- Async HTTP requests using httpx
+- File-based caching
+
+Pending:
 - skl or xgboost model loader
 - Docker / similar
 - Github Actions CI/CD
