@@ -37,8 +37,9 @@ Run the app with
 ## Completed 
  - [x] Add live connectivity to games, coaches, lines, teams, venues, and weather endpoints
  - [x] Build a local caching mechanism to reduce calls to CFBD
-  -[x] Introduce a natural language endpoint powered by OpenAI to answer questions about the dataset
+- [x] Introduce a natural language endpoint powered by OpenAI to answer questions about the dataset
 - [x] Use Pydantic for configuration management and data validations
+- [x] Updated the natural language endpoint to use function calling
 
 ## Future Goals
 - [ ] Integrate the ATS picks ML model
