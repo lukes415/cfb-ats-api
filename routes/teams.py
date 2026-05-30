@@ -63,4 +63,8 @@ async def get_next_games(team_ids: str = Query(...)):
                     "season": curr_year
                 }
     
-    return {"games": list(games_dict.values())}
+    return {
+        "games": list(games_dict.values()),
+        "teams_requested": len(ids),
+        "games_found": len(games_dict),
+    }
