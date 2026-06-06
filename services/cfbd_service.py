@@ -1,4 +1,5 @@
 import httpx
+import asyncio
 from fastapi import HTTPException
 from config import settings
 from pathlib import Path
@@ -6,6 +7,7 @@ import json
 from config import TEAMS_FILE, VENUES_FILE
 import requests
 from schemas import Team
+from datetime import datetime, timezone, date, timedelta
 
 CFBD_BASE_URL = settings.cfbd_base_url
 HEADERS = {
@@ -200,7 +202,7 @@ class CFBDService():
         if cache_key in self._cache:
             print(f"Cache hit for {year}")
             return self._cache[cache_key]
-        
+
         print("Cache miss, calling API")
         async with httpx.AsyncClient() as client:
             try:
@@ -224,6 +226,152 @@ class CFBDService():
                     status_code=500,
                     detail=f"Error fetching weather for year {year}: {str(e)}"
                 )
+
+    async def fetch_elo_for_week(self, year: int, week: int) -> list:
+        """
+        Fetch pregame ELO ratings for all teams for a given season week.
+
+        ELO updates retroactively as the season progresses, so we key the cache
+        by the current Monday (not week number) to ensure ratings reflect all
+        completed games through last weekend.
+        """
+        monday = _monday_cache_key()
+        cache_key = f"elo_{year}_{monday}"
+
+        if cache_key in self._cache:
+            print(f"Cache hit for {cache_key}")
+            return self._cache[cache_key]
+
+        print(f"Cache miss for {cache_key}, fetching ELO from API...")
+        async with httpx.AsyncClient() as client:
+            try:
+                response = await client.get(
+                    f"{settings.cfbd_base_url}/ratings/elo",
+                    params={"year": year, "week": week},
+                    headers=HEADERS,
+                    timeout=30
+                )
+                response.raise_for_status()
+                data = response.json()
+                self._cache[cache_key] = data
+                self._save_cache()
+                return data
+            except httpx.HTTPStatusError as e:
+                print(f"HTTP error fetching ELO: {e}")
+                return []
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=f"Error fetching ELO: {str(e)}")
+
+    async def fetch_game_details(self, game_id: str, game_date: str, year: int) -> dict:
+        """
+        Fetch and cache enriched game details: venue_id, weather, and lines.
+
+        We store venue_id (not the full venue object) because venue data is
+        static and already cached separately in all_venues.json.
+
+        Invalidation: refetch if 3+ days old OR game is within 2 days.
+        See _game_cache_needs_refresh for rationale.
+        """
+        cache_key = f"game_{game_id}"
+        entry = self._cache.get(cache_key)
+
+        if entry and not _game_cache_needs_refresh(entry):
+            print(f"Cache hit for {cache_key}")
+            return entry
+
+        print(f"Fetching game details for game {game_id}...")
+
+        async with httpx.AsyncClient() as client:
+            weather_task = client.get(
+                f"{settings.cfbd_base_url}/games/weather",
+                params={"year": year, "gameId": game_id},
+                headers=HEADERS,
+                timeout=30
+            )
+            lines_task = client.get(
+                f"{settings.cfbd_base_url}/lines",
+                params={"year": year, "gameId": game_id},
+                headers=HEADERS,
+                timeout=30
+            )
+            weather_resp, lines_resp = await asyncio.gather(
+                weather_task, lines_task, return_exceptions=True
+            )
+
+        weather_data = {}
+        if not isinstance(weather_resp, Exception):
+            weather_resp.raise_for_status()
+            w_list = weather_resp.json()
+            if w_list:
+                w = w_list[0]
+                weather_data = {
+                    "temperature": w.get("temperature"),
+                    "conditions": w.get("weatherCondition"),
+                    "wind_mph": w.get("windSpeed"),
+                }
+
+        lines_data = {}
+        venue_id = None
+        if not isinstance(lines_resp, Exception):
+            lines_resp.raise_for_status()
+            l_list = lines_resp.json()
+            if l_list:
+                game_lines = l_list[0]
+                venue_id = game_lines.get("venueId")
+                book_lines = game_lines.get("lines", [])
+                # Prefer consensus line; fall back to first available provider
+                consensus = next((l for l in book_lines if l.get("provider") == "consensus"), None)
+                chosen = consensus or (book_lines[0] if book_lines else None)
+                if chosen:
+                    lines_data = {"spread": chosen.get("spread")}
+
+        now = datetime.now(timezone.utc)
+        entry = {
+            "cached_at": now.isoformat(),
+            "game_date": game_date,
+            "venue_id": venue_id,
+            "weather": weather_data,
+            "lines": lines_data,
+        }
+        self._cache[cache_key] = entry
+        self._save_cache()
+        return entry
+
+
+def _monday_cache_key() -> str:
+    """
+    Returns the ISO date string of the most recent Monday.
+
+    We key ELO cache entries by Monday because CFB games run Thursday–Sunday
+    and ELO ratings update retroactively as results come in. By Monday, the
+    previous week's ELO is finalized and should be relatively stable until
+    the next game.
+    """
+    today = date.today()
+    monday = today - timedelta(days=today.weekday())
+    return monday.isoformat()
+
+
+def _game_cache_needs_refresh(entry: dict) -> bool:
+    """
+    Returns True if the game details cache entry should be refetched.
+
+    Two conditions trigger a refresh (either one is sufficient):
+    - Entry is 3+ days old: weather and lines can drift meaningfully over 3 days.
+    - Game is within 2 days: we want the freshest data as game day approaches,
+      since weather forecasts tighten and lines can move sharply in the final 48h.
+
+    This avoids hammering the CFBD API for games 2+ weeks out where stale
+    weather and lines are fine — nobody cares about a forecast 3 weeks away.
+    """
+    now = datetime.now(timezone.utc)
+    cached_at = datetime.fromisoformat(entry["cached_at"].replace("Z", "+00:00"))
+    game_date = datetime.fromisoformat(entry["game_date"].replace("Z", "+00:00"))
+
+    age_days = (now - cached_at).total_seconds() / 86400
+    days_until_game = (game_date - now).total_seconds() / 86400
+
+    return age_days >= 3 or days_until_game <= 2
 
 
 cfbd_service = CFBDService()

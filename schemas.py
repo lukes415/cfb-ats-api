@@ -1,5 +1,5 @@
 from pydantic import BaseModel, HttpUrl
-from typing import Optional
+from typing import Optional, List
 from datetime import datetime
 
 class Team(BaseModel):
@@ -140,3 +140,68 @@ class Weather(BaseModel):
     pressure: int = None
     weather_condition_code: int = None
     weather_condition: str = None
+
+
+class VenueDetail(BaseModel):
+    """Structured venue info returned per game. Surface type tells you grass vs turf."""
+    name: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    surface: Optional[str] = None
+
+
+class WeatherDetail(BaseModel):
+    """
+    Subset of weather fields relevant to game conditions.
+    Cached per game with a time-proximity-based invalidation policy (see cfbd_service).
+    """
+    temperature: Optional[int] = None
+    conditions: Optional[str] = None
+    wind_mph: Optional[float] = None
+
+
+class LinesDetail(BaseModel):
+    """
+    Consensus spread for the game. Stored separately from prediction because
+    spread is both a display field and a model input.
+    """
+    spread: Optional[float] = None
+
+
+class PredictionDetail(BaseModel):
+    """
+    Model output for a single game. All fields are optional so the endpoint
+    degrades gracefully when predictions are disabled or the model file is absent.
+
+    model_pick_team_id is a team ID (not a name string) so the iOS app can
+    resolve it against the local fbs_teams.json without any string matching.
+
+    top_factors are global feature importances from training — same for every game.
+    We chose this over per-game SHAP values because it requires no additional library
+    and is honest about what the model weights most overall.
+    """
+    model_pick_team_id: Optional[int] = None
+    prob_cover: Optional[float] = None
+    top_factors: Optional[List[str]] = None
+
+
+class NextGameResponse(BaseModel):
+    """Enriched next-game shape returned by /v1/teams/next-game."""
+    id: str
+    home_team: str
+    home_team_id: Optional[int] = None
+    away_team: str
+    away_team_id: Optional[int] = None
+    date: str
+    week: int
+    season: int
+    venue: Optional[VenueDetail] = None
+    weather: Optional[WeatherDetail] = None
+    lines: Optional[LinesDetail] = None
+    prediction: Optional[PredictionDetail] = None
+
+
+class NextGamesResponse(BaseModel):
+    games: List[NextGameResponse]
+    teams_requested: int
+    games_found: int
