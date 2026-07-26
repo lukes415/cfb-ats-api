@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic import BaseSettings
 from datetime import datetime
 from pathlib import Path
 

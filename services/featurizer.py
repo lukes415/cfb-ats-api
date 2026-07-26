@@ -3,10 +3,29 @@ import asyncio
 import pandas as pd
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 from dateutil import parser as dateparser
 
 from config import TEAMS_FILE, VENUES_FILE
 from services.cfbd_service import cfbd_service
+
+
+def _tz_offset_hours(tz_name: str | None, at: datetime) -> int:
+    """
+    Convert a venue's IANA timezone name (e.g. "America/Chicago", as CFBD
+    returns it) to a UTC offset in whole hours at the given datetime.
+
+    Training data encoded time_change as small integer hour deltas, so we
+    round here to match. Falls back to 0 (UTC) for missing/unknown zones.
+    """
+    if not tz_name:
+        return 0
+    if at.tzinfo is None:
+        at = at.replace(tzinfo=timezone.utc)
+    try:
+        return round(at.astimezone(ZoneInfo(tz_name)).utcoffset().total_seconds() / 3600)
+    except Exception:
+        return 0
 
 # Conference name (as CFBD returns it) → column name suffix used in training.
 # This mapping must exactly match the feature engineering in the training notebook.
@@ -89,6 +108,40 @@ def _compute_ats_form(all_games: list, team_id: int, game_date: datetime, n: int
     return sum(c for _, c in last_n)
 
 
+def _compute_ats_season(all_games: list, team_id: int, game_date: datetime) -> tuple[int, int]:
+    """
+    Count ATS covers and total completed games for a team so far this season,
+    entering the current game. `all_games` is already season-scoped by the
+    caller (fetch_games_for_year), so no year filtering is needed here.
+
+    Returns (covers, games_played).
+    """
+    covers = 0
+    games_played = 0
+    for g in all_games:
+        is_home = g.get("homeId") == team_id
+        is_away = g.get("awayId") == team_id
+        if not (is_home or is_away):
+            continue
+        if g.get("covered") is None:
+            continue
+        start_str = g.get("startDate", "")
+        if not start_str:
+            continue
+        try:
+            gd = dateparser.isoparse(start_str)
+            if gd.tzinfo is None:
+                gd = gd.replace(tzinfo=timezone.utc)
+            if gd < game_date:
+                covered = int(g["covered"])
+                games_played += 1
+                covers += covered if is_home else (1 - covered)
+        except Exception:
+            pass
+
+    return covers, games_played
+
+
 def _get_coach_tenure(coaches: list, school: str, season: int) -> tuple[int, bool]:
     """
     Returns (tenure_years, is_interim) for the head coach at a given school in a given season.
@@ -159,9 +212,9 @@ async def build_feature_row(
 
     # away_time_change: offset between game venue and away team's home venue.
     # home_time_change: only non-zero for neutral site games.
-    game_tz = game_venue.get("timezone", 0)
-    home_home_tz = home_venue.get("timezone", game_tz)
-    away_home_tz = away_venue.get("timezone", game_tz)
+    game_tz = _tz_offset_hours(game_venue.get("timezone"), game_date)
+    home_home_tz = _tz_offset_hours(home_venue.get("timezone"), game_date) if home_venue.get("timezone") else game_tz
+    away_home_tz = _tz_offset_hours(away_venue.get("timezone"), game_date) if away_venue.get("timezone") else game_tz
     away_time_change = game_tz - away_home_tz
     home_time_change = (game_tz - home_home_tz) if neutral else 0
 
@@ -171,6 +224,9 @@ async def build_feature_row(
 
     home_ats_last4 = _compute_ats_form(all_games, home_team_id, game_date, n=4)
     away_ats_last4 = _compute_ats_form(all_games, away_team_id, game_date, n=4)
+
+    home_ats_season_covers, home_ats_season_games = _compute_ats_season(all_games, home_team_id, game_date)
+    away_ats_season_covers, away_ats_season_games = _compute_ats_season(all_games, away_team_id, game_date)
 
     game_details = await cfbd_service.fetch_game_details(game_id, game_date.isoformat(), season)
     weather = game_details.get("weather", {})
@@ -203,6 +259,10 @@ async def build_feature_row(
         "rest_diff": rest_diff,
         "home_ats_last4": home_ats_last4,
         "away_ats_last4": away_ats_last4,
+        "home_ats_season_covers": home_ats_season_covers,
+        "home_ats_season_games": home_ats_season_games,
+        "away_ats_season_covers": away_ats_season_covers,
+        "away_ats_season_games": away_ats_season_games,
         "home_team_id": home_team_id,
         "away_team_id": away_team_id,
     }

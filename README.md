@@ -5,9 +5,6 @@ Service to expose ATS model predictions for college football games
 Run the app with
 `uvicorn main:app --reload`
 
-## Next Steps
-- [ ] Add additional functions to the chat endpoint
-
  ## Chatbot Progress
  I updated the chatbot to use function calling to support additional types of queries in the future. I also updated the team matching logic to properly identify "Florida State" instead of "Florida"
 
@@ -40,21 +37,29 @@ Run the app with
 - [x] Introduce a natural language endpoint powered by OpenAI to answer questions about the dataset
 - [x] Use Pydantic for configuration management and data validations
 - [x] Updated the natural language endpoint to use function calling
+- [x] Integrate the ATS picks ML model (`cfb-ats-data` Pipeline loaded via `model_loader.py`, features assembled by `featurizer.py`)
+- [x] Allow a user to retrieve picks for specific teams of interest
 
-## Future Goals
-- [ ] Integrate the ATS picks ML model
-- [ ] Allow a user to retrieve picks for specific teams of interests
+## `GET /v1/teams/next-game`
+Returns the next upcoming game for each requested team, enriched with venue, weather, consensus spread, and the model's ATS prediction.
+
+```bash
+GET /v1/teams/next-game?team_ids=57,2579
+```
+
+If the model file hasn't been loaded, the `prediction` field is omitted but the rest of the response still works.
+
+## Next Steps
+- [ ] Add additional functions to the chat endpoint
 - [ ] Build out logging and expose specs
+- [ ] Docker / similar
+- [ ] Github Actions CI/CD
 - [ ] Stretch: Allow support for retrieving realtime game information to support push notifications
 
 ## Tech
 - FastAPI and Pydantic
 - OpenAI GPT-4 for natural language interface
+- scikit-learn Pipeline (TargetEncoder + RandomForest) loaded via joblib
 - Async HTTP requests using httpx
 - File-based caching
-
-Pending:
-- skl or xgboost model loader
-- Docker / similar
-- Github Actions CI/CD
 

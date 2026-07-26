@@ -1,5 +1,6 @@
 import httpx
 import asyncio
+import logging
 from fastapi import HTTPException
 from config import settings
 from pathlib import Path
@@ -8,6 +9,8 @@ from config import TEAMS_FILE, VENUES_FILE
 import requests
 from schemas import Team
 from datetime import datetime, timezone, date, timedelta
+
+logger = logging.getLogger(__name__)
 
 CFBD_BASE_URL = settings.cfbd_base_url
 HEADERS = {
@@ -23,10 +26,10 @@ class CFBDService():
         if self.cache_file.exists():
             try:
                 with open(self.cache_file, 'r') as f:
-                    print("loading file cache")
+                    logger.debug("loading file cache")
                     return json.load(f)
             except Exception as e:
-                print(f"Error loading cache: {e}")
+                logger.error(f"Error loading cache: {e}")
                 return {}
         return {}
     
@@ -36,16 +39,16 @@ class CFBDService():
             with open(self.cache_file, 'w') as f:
                 json.dump(self._cache, f, indent=2)
         except Exception as e:
-            print(f"Error saving cache: {e}")
+            logger.error(f"Error saving cache: {e}")
     
     async def fetch_games_for_year(self, year: int):
         # Utilize the cache
         cache_key = f"games_{year}"
         if cache_key in self._cache:
-            print(f"Cache hit for {year}")
+            logger.debug(f"Cache hit for {year}")
             return self._cache[cache_key]
         
-        print("Cache miss, calling API")
+        logger.debug("Cache miss, calling API")
         async with httpx.AsyncClient() as client:
             try:
                 response = await client.get(
@@ -61,8 +64,7 @@ class CFBDService():
                 return data
             except httpx.HTTPStatusError as e:
                 # To improve
-                print("HTTP status error")
-                print(e)
+                logger.error(f"HTTP status error: {e}")
             except Exception as e:
                 raise HTTPException(
                     status_code=500,
@@ -74,10 +76,10 @@ class CFBDService():
         cache_key = f"teams_{year}"
         
         if cache_key in self._cache:
-            print(f"Cache hit for {cache_key}")
+            logger.debug(f"Cache hit for {cache_key}")
             return self._cache[cache_key]
         
-        print(f"Cache miss for {cache_key}, fetching from API...")
+        logger.debug(f"Cache miss for {cache_key}, fetching from API...")
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.get(
@@ -95,8 +97,7 @@ class CFBDService():
                 return data
         except httpx.HTTPStatusError as e:
                 # To improve
-                print("HTTP status error")
-                print(e)
+                logger.error(f"HTTP status error: {e}")
         except Exception as e:
             raise HTTPException(
                 status_code=500,
@@ -107,10 +108,10 @@ class CFBDService():
         cache_key = f"coaches_{year}"
         
         if cache_key in self._cache:
-            print(f"Cache hit for {cache_key}")
+            logger.debug(f"Cache hit for {cache_key}")
             return self._cache[cache_key]
         
-        print(f"Cache miss for {cache_key}, fetching from API...")
+        logger.debug(f"Cache miss for {cache_key}, fetching from API...")
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.get(
@@ -128,8 +129,7 @@ class CFBDService():
                 return data
         except httpx.HTTPStatusError as e:
                 # To improve
-                print("HTTP status error")
-                print(e)
+                logger.error(f"HTTP status error: {e}")
         except Exception as e:
             raise HTTPException(
                 status_code=500,
@@ -170,10 +170,10 @@ class CFBDService():
         # Utilize the cache
         cache_key = f"lines_{year}"
         if cache_key in self._cache:
-            print(f"Cache hit for {year}")
+            logger.debug(f"Cache hit for {year}")
             return self._cache[cache_key]
         
-        print("Cache miss, calling API")
+        logger.debug("Cache miss, calling API")
         async with httpx.AsyncClient() as client:
             try:
                 response = await client.get(
@@ -189,8 +189,7 @@ class CFBDService():
                 return data
             except httpx.HTTPStatusError as e:
                 # To improve
-                print("HTTP status error")
-                print(e)
+                logger.error(f"HTTP status error: {e}")
             except Exception as e:
                 raise HTTPException(
                     status_code=500,
@@ -200,10 +199,10 @@ class CFBDService():
         # Utilize the cache
         cache_key = f"weather_{year}"
         if cache_key in self._cache:
-            print(f"Cache hit for {year}")
+            logger.debug(f"Cache hit for {year}")
             return self._cache[cache_key]
 
-        print("Cache miss, calling API")
+        logger.debug("Cache miss, calling API")
         async with httpx.AsyncClient() as client:
             try:
                 response = await client.get(
@@ -219,8 +218,7 @@ class CFBDService():
                 return data
             except httpx.HTTPStatusError as e:
                 # To improve
-                print("HTTP status error")
-                print(e)
+                logger.error(f"HTTP status error: {e}")
             except Exception as e:
                 raise HTTPException(
                     status_code=500,
@@ -239,10 +237,10 @@ class CFBDService():
         cache_key = f"elo_{year}_{monday}"
 
         if cache_key in self._cache:
-            print(f"Cache hit for {cache_key}")
+            logger.debug(f"Cache hit for {cache_key}")
             return self._cache[cache_key]
 
-        print(f"Cache miss for {cache_key}, fetching ELO from API...")
+        logger.debug(f"Cache miss for {cache_key}, fetching ELO from API...")
         async with httpx.AsyncClient() as client:
             try:
                 response = await client.get(
@@ -257,7 +255,7 @@ class CFBDService():
                 self._save_cache()
                 return data
             except httpx.HTTPStatusError as e:
-                print(f"HTTP error fetching ELO: {e}")
+                logger.error(f"HTTP error fetching ELO: {e}")
                 return []
             except Exception as e:
                 raise HTTPException(status_code=500, detail=f"Error fetching ELO: {str(e)}")
@@ -276,10 +274,10 @@ class CFBDService():
         entry = self._cache.get(cache_key)
 
         if entry and not _game_cache_needs_refresh(entry):
-            print(f"Cache hit for {cache_key}")
+            logger.debug(f"Cache hit for {cache_key}")
             return entry
 
-        print(f"Fetching game details for game {game_id}...")
+        logger.debug(f"Fetching game details for game {game_id}...")
 
         async with httpx.AsyncClient() as client:
             weather_task = client.get(

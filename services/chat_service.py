@@ -128,7 +128,6 @@ class ChatService:
             
             # Process each tool call (usually just one)
             for tool_call in tool_calls:
-                print("tool call: ", tool_call)
                 function_name = tool_call.function.name
                 function_args = json.loads(tool_call.function.arguments)
                 
@@ -139,8 +138,6 @@ class ChatService:
                     team_name = function_args.get("team_name", "")
                     normalized_team = self._normalize_team_name(team_name)
 
-                    # print("normalized team: ", normalized_team)
-                    
                     if normalized_team:
                         # Filter games for this team
                         filtered_games = [

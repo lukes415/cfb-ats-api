@@ -1,9 +1,13 @@
+import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from schemas import Team, GamePrediction, GameScore, Coach, Venue, Line, Weather
 from routes import games, chat, coaches, teams, venues, lines, weather
 from config import START_TIME, MODEL_PATH, settings
 import services.model_loader as model_loader
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 @asynccontextmanager
@@ -14,7 +18,7 @@ async def lifespan(app: FastAPI):
     if settings.predictions_enabled:
         model_loader.load(str(MODEL_PATH))
     else:
-        print("[main] PREDICTIONS_ENABLED=false — skipping model load")
+        logger.info("PREDICTIONS_ENABLED=false — skipping model load")
     yield
 
 

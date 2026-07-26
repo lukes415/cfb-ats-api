@@ -1,6 +1,5 @@
 fastapi
 uvicorn[standard]
-pydantic
+pydantic<2
 cfbd
 python-dotenv
-pydantic_settings

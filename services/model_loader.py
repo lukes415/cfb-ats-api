@@ -1,7 +1,10 @@
 import joblib
 import json
+import logging
 import pandas as pd
 from pathlib import Path
+
+logger = logging.getLogger(__name__)
 
 # Module-level state loaded once at startup.
 # Keeping these at module scope means we load the ~50MB model file once,
@@ -25,7 +28,7 @@ def load(model_path: str) -> None:
 
     path = Path(model_path)
     if not path.exists():
-        print(f"[model_loader] No model at {model_path} — predictions disabled")
+        logger.warning(f"No model at {model_path} — predictions disabled")
         return
 
     _model = joblib.load(path)
@@ -44,7 +47,7 @@ def load(model_path: str) -> None:
     _top_factors = meta["top_factors"]
 
     predictions_enabled = True
-    print(f"[model_loader] Loaded {len(_feature_columns)}-feature pipeline from {model_path}")
+    logger.info(f"Loaded {len(_feature_columns)}-feature pipeline from {model_path}")
 
 
 def predict(feature_df: pd.DataFrame, home_team_id: int, away_team_id: int) -> tuple[int, float, list[str]]:
